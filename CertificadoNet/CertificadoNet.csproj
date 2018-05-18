@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Biblioteca para leitura de certificados digitais padrão ICP-Brasil em .NET. Retorna os dados dos certificados tipos eCNPJ e eCPF.</Description>
+    <RepositoryUrl>https://github.com/pbozzi/certificado-net</RepositoryUrl>
+    <PackageReleaseNotes>Commit inicial.</PackageReleaseNotes>
+    <PackageTags>csharp certificate x509 oid</PackageTags>
+    <Authors>Pablo Bozzi</Authors>
+    <Company />
   </PropertyGroup>
 
 </Project>

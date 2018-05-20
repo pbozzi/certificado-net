@@ -8,6 +8,7 @@
     <PackageTags>csharp certificate x509 oid</PackageTags>
     <Authors>Pablo Bozzi</Authors>
     <Company />
+    <Version>1.0.1</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-
 </Project>

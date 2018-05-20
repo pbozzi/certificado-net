@@ -25,7 +25,8 @@ namespace CertificadoNet
         public DateTime ValidoAPartir { get; private set; }
         public DateTime ValidoAte { get; private set; }
         public bool IcpBrasil { get; private set; }
-        public bool Valido { get; private set; }
+        public bool CadeiaValida { get; private set; }
+        public bool PeriodoValido { get; private set; }
         public PessoaFisica PessoaFisica { get; private set; }
         public PessoaJuridica PessoaJuridica { get; private set; }
 
@@ -42,6 +43,7 @@ namespace CertificadoNet
 
                 ValidoAPartir = certificado.NotBefore;
                 ValidoAte = certificado.NotAfter;
+                PeriodoValido = DateTime.Now > certificado.NotBefore && DateTime.Now < certificado.NotAfter;
 
                 var chain = new X509Chain();
                 if (validaCadeia)
@@ -52,25 +54,18 @@ namespace CertificadoNet
                     chain.ChainPolicy.VerificationFlags = X509VerificationFlags.NoFlag;
 
                     if (chain.Build(certificado))
-                        Valido = true;
+                        CadeiaValida = true;
                     else
                     {
-                        Valido = false;
                         ErrosValidacaoCadeia = new Dictionary<int, string>();
                         chain.ChainStatus.ToList().ForEach(x => ErrosValidacaoCadeia.Add((int)x.Status, x.StatusInformation));
                     }
                 }
                 else
-                {
                     chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
-                    Valido = true;
-                }
 
                 var certificadoRaiz = chain.ChainElements[chain.ChainElements.Count - 1].Certificate;
-                if (raizesIcpBrasil.Contains(certificadoRaiz))
-                    IcpBrasil = true;
-                else
-                    IcpBrasil = false;
+                IcpBrasil = raizesIcpBrasil.Contains(certificadoRaiz);
 
                 TipoCertificado = ObterTipo(certificado);
                 if (TipoCertificado == TipoCertificadoEnum.eCPF)

@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/pbozzi/certificado-net.svg?branch=master)](https://travis-ci.org/pbozzi/certificado-net)
-[![Total Downloads](https://poser.pugx.org/pbozzi/certificado-net/downloads)](https://packagist.org/packages/pbozzi/certificado-net)
-[![Latest Stable Version](https://poser.pugx.org/pbozzi/certificado-net/v/stable)](https://packagist.org/packages/pbozzi/certificado-net)
-[![License](https://poser.pugx.org/pbozzi/certificado-net/license)](https://packagist.org/packages/pbozzi/certificado-net)
+[![Total Downloads](https://img.shields.io/nuget/dt/CertificadoNet.svg)](https://www.nuget.org/packages/CertificadoNet)
+[![Latest Stable Version](https://img.shields.io/nuget/v/CertificadoNet.svg)](https://www.nuget.org/packages/CertificadoNet)
 
 # certificado-net
 Biblioteca para leitura de certificados digitais padrão ICP-Brasil em .NET. Retorna os dados dos certificados tipos eCNPJ e eCPF.
@@ -21,13 +20,14 @@ var cert = new CertificadoDigital("cert.cer");
 
 ## Propriedades
 
-* TipoCertificado: eCNPJ, eCPF ou Outro
-* ValidoAPartir: data e hora início da validade (não é possível utilizar o certificado antes dessa data)
-* ValidoAte: data e hora fim da validade (não é possível utilizar o certificado após essa data)
+* TipoCertificado: eCNPJ, eCPF ou Outro.
+* ValidoAPartir: data e hora início da validade (não é possível utilizar o certificado antes dessa data).
+* ValidoAte: data e hora fim da validade (não é possível utilizar o certificado após essa data).
+* PeriodoValido: informa se o certificado não está vencido.
 * IcpBrasil: informa se o certificado digital possui a ICP-Brasil como AC raiz.
-* Valido: informa se o certificado possui uma cadeia válida.
-* PessoaFisica: quando do tipo eCPF, contém as informações do titular do certificado.
-* PessoaJuridica: quando do tipo eCNPJ, contém as informações do titular do certificado.
+* CadeiaValida: informa se o certificado possui uma cadeia válida.
+* PessoaFisica: quando tipo eCPF, contém as informações do titular do certificado.
+* PessoaJuridica: quando tipo eCNPJ, contém as informações do titular do certificado.
 
 Atributos da Pessoa Física:
 * Nome
